@@ -3,6 +3,7 @@ package org.ozmi.aroundsee.server.core;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.ozmi.aroundsee.server.services.LoginService;
 import org.ozmi.aroundsee.server.services.SampleService;
 
 import com.typesafe.config.Config;
@@ -28,7 +29,7 @@ public class App
 
 		// Tells the Jersey Servlet which REST service/class to load.
 		jerseyServlet.setInitParameter("jersey.config.server.provider.classnames",
-				SampleService.class.getCanonicalName());
+				SampleService.class.getCanonicalName() + ";" + LoginService.class.getCanonicalName());
 
 		try {
 			jettyServer.start();
