@@ -67,6 +67,8 @@ public class LoginService {
 			return Response.status(Status.BAD_REQUEST).entity("request body is not in json type").build();  
 		}
 	}
+	
+	
 
 }
 
