@@ -4,7 +4,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.ozmi.aroundsee.server.services.LoginService;
-import org.ozmi.aroundsee.server.services.OldGoogleService;
+import org.ozmi.aroundsee.server.services.GoogleService;
 import org.ozmi.aroundsee.server.services.SampleService;
 
 import com.typesafe.config.Config;
@@ -31,7 +31,7 @@ public class App
 		// Tells the Jersey Servlet which REST service/class to load.
 		jerseyServlet.setInitParameter("jersey.config.server.provider.classnames",
 				SampleService.class.getCanonicalName() + ";" + LoginService.class.getCanonicalName() + ";" +
-				OldGoogleService.class.getCanonicalName());
+				GoogleService.class.getCanonicalName());
 
 		try {
 			System.out.println("----- server is running, port: 8080");

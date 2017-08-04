@@ -23,7 +23,7 @@ public class SampleService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response hello() throws IOException {
 		
-		List<Place> places = OldGoogleService.radarGoogleSearch(31.9696, 34.8386, 10000, PlacesTypes.bar.toString());
+		List<Place> places = GoogleService.radarGoogleSearch(31.9696, 34.8386, 10000, PlacesTypes.bar.toString());
 		
 		return Response.ok("Hello World! " + places.get(0).getName()).build();
 	}

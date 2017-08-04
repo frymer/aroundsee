@@ -1,9 +1,18 @@
 package org.ozmi.aroundsee.server.services;
 
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.BadRequestException;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -17,10 +26,26 @@ public class LoginService {
 	private org.eclipse.jetty.server.handler.ContextHandler.Context ctx = ContextHandler.getCurrentContext();
 
 	@POST
+	@Path("/test")
+//	@Consumes(MediaType.APPLICATION_JSON)
+	public Response test (@Context HttpServletRequest r) throws IOException{
+		System.out.println();
+		
+		Map<String, String[]> sa= r.getParameterMap();
+		String as = r.getReader().readLine();
+		
+//		System.out.println("request    :" + r.getParameter("username"));
+		
+		return Response.ok("ok").build();
+		
+	}
+	
+	@POST
 	@Path("/login")
-	@Produces(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	 //{"username":"orsa","password":"123"}
-	public Response login(String request) {
+	public Response login(@Context HttpServletRequest request) throws IOException {
 		
 		try{
 			JSONObject jsonRequest = new JSONObject(request);

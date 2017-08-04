@@ -14,70 +14,65 @@
 	</classpathentry>
 	<classpathentry excluding="conf/" kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/main/resources/conf"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+	<classpathentry exported="true" kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-codec-1.6.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-configuration-1.10.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-io-1.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-logging-1.1.3.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-primitives-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/google-places-api-java-2.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/google-places-api-java-2.1.2-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/google-places-api-java-2.1.2-sources.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/gson-2.4.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/guava-18.0.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/httpclient-4.3.5.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/httpcore-4.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jackson-annotations.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jackson-core.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jackson-databind.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/java-json.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/javax.servlet-api-3.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-http-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-io-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-security-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-server-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-servlet-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-util-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-webapp-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-xml-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/json-20140107.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jsr305-3.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/junit-4.11.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/lombok-1.14.4.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/mongo-java-driver-3.2.2.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/mongo-java-driver-3.2.2-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/mongo-java-driver-3.2.2-sources.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/okhttp-2.5.0.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/okhttp-urlconnection-2.5.0.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/okio-1.6.0.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/restfb-1.20.0.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/restfb-1.20.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/restfb-1.20.0-sources.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/slf4j-api-1.7.13.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/spark-core-2.5.4.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/spark-core-2.5.4-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/spark-core-2.5.4-sources.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/sprockets-3.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/sprockets-3.0.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/sprockets-3.0.0-sources.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/value-2.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/websocket-api-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/websocket-client-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/websocket-common-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/websocket-server-9.3.6.v20151106.jar"/>
-	<classpathentry kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/websocket-servlet-9.3.6.v20151106.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-codec-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-configuration-1.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-io-1.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-lang-2.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-logging-1.1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/commons-primitives-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/google-places-api-java-2.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/google-places-api-java-2.1.2-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/google-places-api-java-2.1.2-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/gson-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/guava-18.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/hamcrest-core-1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/httpclient-4.3.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/httpcore-4.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jackson-annotations.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jackson-core.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jackson-databind.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/java-json.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-http-9.3.6.v20151106.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-io-9.3.6.v20151106.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-security-9.3.6.v20151106.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-server-9.3.6.v20151106.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-servlet-9.3.6.v20151106.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-util-9.3.6.v20151106.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-webapp-9.3.6.v20151106.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jetty-xml-9.3.6.v20151106.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/json-20140107.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/jsr305-3.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/junit-4.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/lombok-1.14.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/mongo-java-driver-3.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/mongo-java-driver-3.2.2-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/mongo-java-driver-3.2.2-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/okhttp-2.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/okhttp-urlconnection-2.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/okio-1.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/restfb-1.20.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/restfb-1.20.0-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/restfb-1.20.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/slf4j-api-1.7.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/spark-core-2.5.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/spark-core-2.5.4-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/spark-core-2.5.4-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/sprockets-3.0.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/sprockets-3.0.0-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/sprockets-3.0.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GitProjects/ArounSeeServer/aroundsee/aroundsee-server/lib/value-2.1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

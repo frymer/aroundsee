@@ -6,11 +6,13 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.ozmi.aroundsee.server.services.OldGoogleService;
+import org.ozmi.aroundsee.server.services.GoogleService;
 
 import net.sf.sprockets.google.Place.Photo;
 
 public class Place {
+	private final static int PHOTOS_MAX_WIDTH = 400;
+	
 	private String name;
 	private String address;
 	private String id;
@@ -84,7 +86,8 @@ public class Place {
     public static String buildPhotoUrl(Photo photo){
     	StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo?photoreference=");
     	sb.append(photo.getReference());
-    	sb.append("&key=" + OldGoogleService.apiKey);
+    	sb.append("&maxwidth=" + PHOTOS_MAX_WIDTH);
+    	sb.append("&key=" + GoogleService.apiKey);
     	
     	return sb.toString();
     }
