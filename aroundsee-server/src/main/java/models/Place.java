@@ -92,14 +92,6 @@ public class Place {
     	return sb.toString();
     }
 	
-//	public Place(String name, String address, String id, String rating, String icon){
-//		this.name = name;
-//		this.address = address;
-//		this.id = id;
-//		this.rating = rating;
-//		this.icon = icon;
-//	}
-	
 	public JSONObject toJson() throws JSONException{
 		JSONObject json = new JSONObject();
 		
@@ -115,11 +107,15 @@ public class Place {
 		return json;
 	}
 	
+	public static JSONObject toJson(net.sf.sprockets.google.Place place) throws JSONException{
+		return (new Place(place).toJson());
+	}
+	
 	public static JSONArray toJson(List<net.sf.sprockets.google.Place> places) throws JSONException{
 		JSONArray placesJson = new JSONArray();
 		
 		for(net.sf.sprockets.google.Place p: places){
-			placesJson.put(new Place(p).toJson());
+			placesJson.put(toJson(p));
 		}
 		
 		return placesJson;

@@ -2,6 +2,7 @@ package org.ozmi.aroundsee.server.services;
 
 import net.sf.sprockets.Sprockets;
 import net.sf.sprockets.google.Place;
+import net.sf.sprockets.google.Place.Id;
 import net.sf.sprockets.google.Place.Photo;
 import net.sf.sprockets.google.Places;
 import net.sf.sprockets.google.Places.Params;
@@ -47,14 +48,6 @@ public class GoogleService {
         return resp.getResult();
     }
     
-    private String buildPhotoUrl(String photoReference){
-    	StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo?photoreference=");
-    	sb.append(photoReference);
-    	sb.append("&key=" + apiKey);
-    	
-    	return sb.toString();
-    }
-    
     @GET
     @Path("/getPlacesByLatLng/{Lat}/{Lng}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -72,8 +65,10 @@ public class GoogleService {
     @Produces(MediaType.APPLICATION_JSON)
     public static javax.ws.rs.core.Response getPlaceById(@PathParam("id") String id) throws IOException, JSONException{
     	setAPIKey();
+//    	ChIJH3w7GaZMHRURkD-WwKJy-8E
     	
-    	Response<List<Place>> place = Places.nearbySearch/*radarSearch*/(Places.Params.create().placeId(id));
+    	Response<Place> place = Places.details(Places.Params.create().placeId(id));
+    	
     	String places = models.Place.toJson(place.getResult()).toString();
     	return javax.ws.rs.core.Response.ok(places).build();
     }
