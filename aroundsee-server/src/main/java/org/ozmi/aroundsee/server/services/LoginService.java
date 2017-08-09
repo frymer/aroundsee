@@ -93,6 +93,30 @@ public class LoginService {
 		}
 	}
 	
+	@POST
+	@Path("/delete")
+	@Produces(MediaType.APPLICATION_JSON)
+//	{username: "c", password: "d"}  
+	public Response delete(String request){
+		try{
+			JSONObject jsonRequest = new JSONObject(request);
+			
+			String userName= jsonRequest.get("username").toString();
+			String password = jsonRequest.get("password").toString();
+			
+			//TODO : connect to DB : delete user with the above parameters
+			boolean isDeletedSuccessfully= true;
+			if (isDeletedSuccessfully){
+				return Response.ok().build();
+			}else{
+				return Response.status(Status.BAD_REQUEST).entity("register don't end successfully").build();
+			}
+			
+		} catch (JSONException ex){
+			return Response.status(Status.BAD_REQUEST).entity("request body is not in json type").build();  
+		}
+	}
+	
 	
 
 }
