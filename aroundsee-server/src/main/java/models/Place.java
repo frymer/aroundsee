@@ -78,12 +78,12 @@ public class Place {
 		this.images = new ArrayList<String>();
 		
 		for(Photo p : place.getPhotos()){
-			this.images.add(buildPhotoUrl(p));
+			this.images.add(buildPhotoUrlRequest(p));
 		}
 		
 	}
 	
-    public static String buildPhotoUrl(Photo photo){
+    public static String buildPhotoUrlRequest(Photo photo){
     	StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo?photoreference=");
     	sb.append(photo.getReference());
     	sb.append("&maxwidth=" + PHOTOS_MAX_WIDTH);

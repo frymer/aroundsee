@@ -51,7 +51,7 @@ public class GoogleService {
     @GET
     @Path("/getPlacesByLatLng/{Lat}/{Lng}")
     @Produces(MediaType.APPLICATION_JSON)
-    public static javax.ws.rs.core.Response getPlaceByLatLng(@PathParam("Lat") double lat, @PathParam("Lng") double lng) throws IOException, JSONException{
+    public static javax.ws.rs.core.Response getPlacesByLatLng(@PathParam("Lat") double lat, @PathParam("Lng") double lng) throws IOException, JSONException{
     	setAPIKey();
     	Response<List<Place>> places = Places.nearbySearch(Places.Params.create().latitude(lat).longitude(lng).radius(DEFAULT_RADIUS));
     	
