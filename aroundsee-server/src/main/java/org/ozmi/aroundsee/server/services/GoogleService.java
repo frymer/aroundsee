@@ -57,7 +57,10 @@ public class GoogleService {
     	
     	JSONArray results = models.Place.toJson(places.getResult());
     	
-    	return javax.ws.rs.core.Response.ok(results.toString() + places.getResult().get(0).getPlaceId()).build();
+    	return javax.ws.rs.core.Response.ok(results.toString())
+    		   .header("Access-Control-Allow-Origin", "*")
+    		   .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+    		   .allow("OPTIONS").build();
     }
     
     @GET
@@ -70,7 +73,10 @@ public class GoogleService {
     	Response<Place> place = Places.details(Places.Params.create().placeId(id));
     	
     	String places = models.Place.toJson(place.getResult()).toString();
-    	return javax.ws.rs.core.Response.ok(places).build();
+    	return javax.ws.rs.core.Response.ok(places)
+    		   .header("Access-Control-Allow-Origin", "*")
+    		   .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+    		   .allow("OPTIONS").build();
     }
 }
 
