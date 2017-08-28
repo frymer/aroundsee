@@ -103,7 +103,6 @@ public class Place {
 	public Place(net.sf.sprockets.google.Place place){
 		this.name = place.getName();
 		
-		
 		this.review = place.getReviews().size() > 0 ? place.getReviews().get(0).getText() : null;
 		this.priceLevel = String.valueOf(place.getPriceLevel());
 		this.openingHours = place.getOpeningHours().size() != 0 ? place.getFormattedOpeningHours() : null; 
@@ -117,7 +116,6 @@ public class Place {
 		for(Photo p : place.getPhotos()){
 			this.images.add(buildPhotoUrlRequest(p));
 		}
-		
 	}
 	
     public static String buildPhotoUrlRequest(Photo photo){
@@ -133,13 +131,18 @@ public class Place {
 		JSONObject json = new JSONObject();
 		
 		json.put("name", this.name);
+		
+		json.put("review", this.review);
+		json.put("priceLevel", this.priceLevel);
+		JSONArray openingHoursArray = new JSONArray(this.openingHours);
+		json.put("openingHours", openingHoursArray);
+		
 		json.put("address", this.address);
 		json.put("id", this.id);
 		json.put("rating", this.rating);
 		json.put("icon", this.icon);
-		
-		JSONArray images = new JSONArray(this.images);
-		json.put("images", images);
+		JSONArray imagesArray = new JSONArray(this.images);
+		json.put("images", imagesArray);
 		
 		return json;
 	}
