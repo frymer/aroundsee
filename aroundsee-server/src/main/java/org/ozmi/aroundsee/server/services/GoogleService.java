@@ -27,6 +27,7 @@ import org.json.JSONException;
 public class GoogleService {
     public static String apiKey = "AIzaSyBSnG-6XtF3lWyCPldv_En0DqJ0H8o16Uc";//"AIzaSyB1TNzF_kw1hbCkdmmWDOTkOW2xvPpQNNY";
     private static GooglePlaces client = null;
+    private static final int DEFAULT_PLACES_REQUEST_NUMBER = 10;
     private static final int DEFAULT_RADIUS = 10000;
 
     private static void setAPIKey(){
@@ -54,7 +55,7 @@ public class GoogleService {
     public static javax.ws.rs.core.Response getPlacesByLatLng(@PathParam("Lat") double lat, @PathParam("Lng") double lng) throws IOException, JSONException{
     	setAPIKey();
     	Response<List<Place>> places = Places.nearbySearch(Places.Params.create().latitude(lat).longitude(lng).radius(DEFAULT_RADIUS));
-    	JSONArray results = models.Place.toJson(places.getResult());
+    	JSONArray results = models.Place.toJson(places.getResult().subList(0, DEFAULT_PLACES_REQUEST_NUMBER));
     	
     	return javax.ws.rs.core.Response.ok(results.toString())
     		   .header("Access-Control-Allow-Origin", "*")

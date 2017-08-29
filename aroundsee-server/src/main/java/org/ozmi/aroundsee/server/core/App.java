@@ -34,11 +34,11 @@ public class App
 				GoogleService.class.getCanonicalName());
 
 		try {
-			System.out.println("----- server is running, port: 8080");
+			System.out.println("----- server is running, port: "+ config.getInt("server.port"));
 			jettyServer.start();
 			jettyServer.join();
 		} catch (Exception ex){
-			jettyServer.destroy();
+			System.out.println("Address already in use!!!");
 		} finally {
 			jettyServer.destroy();
 		}
