@@ -55,7 +55,7 @@ public class GoogleService {
     public static javax.ws.rs.core.Response getPlacesByLatLng(@PathParam("Lat") double lat, @PathParam("Lng") double lng) throws IOException, JSONException{
     	setAPIKey();
     	Response<List<Place>> places = Places.nearbySearch(Places.Params.create().latitude(lat).longitude(lng).radius(DEFAULT_RADIUS));
-    	JSONArray results = models.Place.toJson(places.getResult().subList(0, DEFAULT_PLACES_REQUEST_NUMBER));
+    	JSONArray results = models.Place.toJson(places.getResult());//.subList(0, DEFAULT_PLACES_REQUEST_NUMBER));
     	
     	return javax.ws.rs.core.Response.ok(results.toString())
     		   .header("Access-Control-Allow-Origin", "*")
