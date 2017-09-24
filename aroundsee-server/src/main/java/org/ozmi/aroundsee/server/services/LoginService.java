@@ -1,13 +1,9 @@
 package org.ozmi.aroundsee.server.services;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -20,10 +16,16 @@ import javax.ws.rs.core.Response.Status;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ozmi.aroundsee.bl.RepositoryImplHanlder;
+import org.ozmi.aroundsee.bl.repository.UserRepository;
+import org.ozmi.aroundsee.models.AroundSeeUser;
 
 @Path("/authentication")
 public class LoginService {
 	private org.eclipse.jetty.server.handler.ContextHandler.Context ctx = ContextHandler.getCurrentContext();
+	private UserRepository _aroundseeUserRepository = 
+			(UserRepository) new RepositoryImplHanlder<AroundSeeUser>(AroundSeeUser.class).getRepository();
+
 
 	@POST
 	@Path("/test")
@@ -54,7 +56,8 @@ public class LoginService {
 			String pass = jsonRequest.get("password").toString();
 			
 			//TODO : connect to DB : check authenticate with user&password
-			boolean isAllowedUser = true;
+			boolean isAllowedUser = _aroundseeUserRepository.doesUserExist(user, pass);
+			
 			if (isAllowedUser){
 				return Response.ok().build();
 
@@ -64,6 +67,8 @@ public class LoginService {
 			
 		} catch (JSONException ex){
 			return Response.status(Status.BAD_REQUEST).entity("request body is not in json type").build();  
+		} catch (Throwable e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Could not verfiy user").build();
 		}
 	}
 	
@@ -75,10 +80,14 @@ public class LoginService {
 		try{
 			JSONObject jsonRequest = new JSONObject(request);
 			
-			String lastName = jsonRequest.get("lastName").toString();
-			String firstName = jsonRequest.get("firstName").toString();
-			String userName= jsonRequest.get("username").toString();
-			String password = jsonRequest.get("password").toString();
+			AroundSeeUser user = new AroundSeeUser();
+			user.setLastName(jsonRequest.get("lastName").toString());
+			user.setFirstName(jsonRequest.get("firstName").toString());
+			user.setUsername(jsonRequest.get("username").toString());
+			user.setPassword(jsonRequest.get("password").toString());
+			
+			_aroundseeUserRepository.create(user);
+			
 			
 			//TODO : connect to DB : register new user with above parameters
 			boolean isRegisterSuccessfully= true;
@@ -90,6 +99,9 @@ public class LoginService {
 			
 		} catch (JSONException ex){
 			return Response.status(Status.BAD_REQUEST).entity("request body is not in json type").build();  
+		} catch (Throwable e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Could not save new user").build();  
+
 		}
 	}
 	
@@ -104,8 +116,7 @@ public class LoginService {
 			String userName= jsonRequest.get("username").toString();
 			String password = jsonRequest.get("password").toString();
 			
-			//TODO : connect to DB : delete user with the above parameters
-			boolean isDeletedSuccessfully= true;
+			boolean isDeletedSuccessfully= _aroundseeUserRepository.deleteByUsernameAndPass(userName, password);;
 			if (isDeletedSuccessfully){
 				return Response.ok().build();
 			}else{
@@ -114,6 +125,8 @@ public class LoginService {
 			
 		} catch (JSONException ex){
 			return Response.status(Status.BAD_REQUEST).entity("request body is not in json type").build();  
+		} catch (Throwable e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Could not remove user").build();
 		}
 	}
 	
