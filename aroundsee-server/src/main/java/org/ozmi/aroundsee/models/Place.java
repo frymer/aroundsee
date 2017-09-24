@@ -1,4 +1,4 @@
-package models;
+package org.ozmi.aroundsee.models;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
