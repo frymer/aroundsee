@@ -38,7 +38,8 @@ public class LoginService {
 		
 //		System.out.println("request    :" + r.getParameter("username"));
 		
-		return Response.ok("ok").build();
+		return Response.ok("ok").header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		
 	}
 	
@@ -59,7 +60,8 @@ public class LoginService {
 			boolean isAllowedUser = _aroundseeUserRepository.doesUserExist(user, pass);
 			
 			if (isAllowedUser){
-				return Response.ok().build();
+				return Response.ok().header("Access-Control-Allow-Origin", "*")
+						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 
 			}else{
 				return Response.status(Status.BAD_REQUEST).entity("not allowed user").build();
@@ -92,7 +94,8 @@ public class LoginService {
 			//TODO : connect to DB : register new user with above parameters
 			boolean isRegisterSuccessfully= true;
 			if (isRegisterSuccessfully){
-				return Response.ok().build();
+				return Response.ok().header("Access-Control-Allow-Origin", "*")
+						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS")..build();
 			}else{
 				return Response.status(Status.BAD_REQUEST).entity("register don't end successfully").build();
 			}
@@ -118,7 +121,8 @@ public class LoginService {
 			
 			boolean isDeletedSuccessfully= _aroundseeUserRepository.deleteByUsernameAndPass(userName, password);;
 			if (isDeletedSuccessfully){
-				return Response.ok().build();
+				return Response.ok().header("Access-Control-Allow-Origin", "*")
+						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 			}else{
 				return Response.status(Status.BAD_REQUEST).entity("register don't end successfully").build();
 			}
