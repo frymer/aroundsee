@@ -239,8 +239,14 @@ public class Place {
 	@JsonIgnore
 	public double[][] getVector() {
 		double[][] vector = new double[1][PLACE_VECTOR_SIZE];
-		for (int i = 0; i < this.type.getVector().length; i++) {
-			vector[0][i] = this.type.getVector()[0][i];
+		for (int i = 0; i < vector.length; i++) {
+			vector[0][i] = 0;
+		}
+		
+		if (this.type != null) {
+			for (int i = 0; i < this.type.getVector().length; i++) {
+				vector[0][i] = this.type.getVector()[0][i];
+			}
 		}
 
 		double rating = Double.parseDouble(this.getRating());
