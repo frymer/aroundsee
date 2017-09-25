@@ -3,10 +3,11 @@ package org.ozmi.aroundsee.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.ozmi.aroundsee.bl.repository.Identifiable;
 
 public class AroundSeeUser implements Identifiable {
-	private String id;
+	private Object _id;
 	private String username;
 	private String password;
 	private String firstName;
@@ -29,14 +30,12 @@ public class AroundSeeUser implements Identifiable {
 		this.password = password;
 	}
 
-	@Override
 	public Object getId() {
-		return id;
+		return _id;
 	}
 
-	@Override
 	public void setId(Object id) {
-		this.id = (String) id;
+		this._id = (String) id;
 	}
 
 	public String getFirstName() {
@@ -59,11 +58,21 @@ public class AroundSeeUser implements Identifiable {
 		if (this.likedPlaces == null) {
 			this.likedPlaces = new ArrayList<Place>();
 		}
-		
+
 		return likedPlaces;
 	}
 
 	public void setLikedPlaces(List<Place> likedPlaces) {
 		this.likedPlaces = likedPlaces;
+	}
+
+	@Override
+	public ObjectId get_id() {
+		return (ObjectId) _id;
+	}
+
+	@Override
+	public void set_id(ObjectId id) {
+		this._id = id;
 	}
 }

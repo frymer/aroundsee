@@ -98,8 +98,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.mongodb</groupId>
-			<artifactId>mongo-java-driver</artifactId>
-			<version>3.2.2</version>
+			<artifactId>mongodb-driver</artifactId>
+			<version>3.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.sprockets</groupId>
@@ -125,7 +125,7 @@
 			<artifactId>jetty-server</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-servlet</artifactId>
