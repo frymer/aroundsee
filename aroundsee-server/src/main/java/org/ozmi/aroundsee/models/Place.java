@@ -240,7 +240,7 @@ public class Place {
 	public double[][] getVector() {
 		double[][] vector = new double[1][PLACE_VECTOR_SIZE];
 		for (int i = 0; i < vector.length; i++) {
-			vector[0][i] = 0;
+			vector[0][i] = 0.00000001;
 		}
 		
 		if (this.type != null) {
@@ -250,12 +250,12 @@ public class Place {
 		}
 
 		double rating = Double.parseDouble(this.getRating());
-		double ratingVectorRep = rating > 0 ? (rating / 5.0) : 0;
+		double ratingVectorRep = rating > 0 ? rating : 0.000001;
 
 		vector[0][RATING_VECTOR_INDEX] = ratingVectorRep;
 
 		double priceLevel = Double.parseDouble(this.getPriceLevel());
-		double priceLevelVectorRep = priceLevel > 0 ? (priceLevel / 5.0) : 0;
+		double priceLevelVectorRep = priceLevel > 0 ? (priceLevel / 5.0) : 0.000001;
 
 		vector[0][PRICE_VECTOR_INDEX] = priceLevel;
 
