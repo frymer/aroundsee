@@ -14,6 +14,10 @@ public class AroundSeeUser implements Identifiable {
 	private String lastName;
 	private List<Place> likedPlaces;
 
+	public AroundSeeUser() {
+		
+	}
+	
 	public String getUsername() {
 		return username;
 	}
@@ -28,14 +32,6 @@ public class AroundSeeUser implements Identifiable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Object getId() {
-		return _id;
-	}
-
-	public void setId(Object id) {
-		this._id = (String) id;
 	}
 
 	public String getFirstName() {

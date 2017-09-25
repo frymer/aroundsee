@@ -49,33 +49,35 @@ public class LoginService {
 				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 
 	}
-	
+
 	@GET
-	public Response getAllUsers() throws Throwable{
+	public Response getAllUsers() throws Throwable {
 		List<AroundSeeUser> users = _aroundseeUserRepository.all();
 		JsonNode result = new ObjectMapper().readTree(users.toString());
-		
+
 		return Response.status(Status.OK).entity(result).build();
 
 	}
-	
+
 	@POST
 	@Path("/login")
 	// @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	// {"username":"orsa","password":"123"}
-	public Response login(@Context HttpServletRequest request) throws IOException {
+	public Response login(String request) throws IOException {
 
-		try{
+		try {
 			JSONObject jsonRequest = new JSONObject(request);
 
-			String user = jsonRequest.get("username").toString();
+			String username = jsonRequest.get("username").toString();
 			String pass = jsonRequest.get("password").toString();
 
-			boolean isAllowedUser = _aroundseeUserRepository.doesUserExist(user, pass);
+			AroundSeeUser user = _aroundseeUserRepository.getUserByUsernameAndPass(username, pass);
+			
 
-			if (isAllowedUser) {
-				return Response.ok().header("Access-Control-Allow-Origin", "*")
+			if (user != null) {
+				return Response.ok().entity(user.get_id().toHexString())
+						.header("Access-Control-Allow-Origin", "*")
 						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 
 			} else {
@@ -148,13 +150,14 @@ public class LoginService {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Could not remove user").build();
 		}
 	}
-	
+
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public javax.ws.rs.core.Response getUserById(@PathParam("id") String id) throws Throwable {
 		AroundSeeUser user = _aroundseeUserRepository.read(id);
-		return Response.status(Status.OK).entity(SerializationDeserializationService.serializeTo(user, SerializeFormat.Json)).build();
+		return Response.status(Status.OK)
+				.entity(SerializationDeserializationService.serializeTo(user, SerializeFormat.Json)).build();
 	}
 
 }

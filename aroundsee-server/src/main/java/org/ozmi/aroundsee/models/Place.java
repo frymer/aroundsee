@@ -13,6 +13,8 @@ import org.json.JSONObject;
 import org.ozmi.aroundsee.server.services.GoogleService;
 import org.ozmi.aroundsee.server.services.PlacesTypes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import net.sf.sprockets.google.Places;
 import net.sf.sprockets.google.Place.Photo;
 import net.sf.sprockets.google.Places.Response;
@@ -20,8 +22,8 @@ import net.sf.sprockets.google.Places.Response;
 public class Place {
 	public final static int PLACE_VECTOR_SIZE = 9;
 	public final static int RATING_VECTOR_INDEX = 7;
-	public final static int PRICE_VECTOR_INDEX  = 8;
-	
+	public final static int PRICE_VECTOR_INDEX = 8;
+
 	private final static int PHOTOS_MAX_WIDTH = 400;
 
 	private String name;
@@ -39,6 +41,10 @@ public class Place {
 	private String openingHoursToday;
 	private String geoLocation;
 	private String phone;
+
+	public Place() {
+
+	}
 
 	public String getPriceLevel() {
 		return priceLevel;
@@ -161,6 +167,7 @@ public class Place {
 		}
 	}
 
+	@JsonIgnore
 	public static String buildPhotoUrlRequest(Photo photo) {
 		StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo?photoreference=");
 		sb.append(photo.getReference());
@@ -170,6 +177,7 @@ public class Place {
 		return sb.toString();
 	}
 
+	@JsonIgnore
 	public JSONObject toJson() throws JSONException {
 		JSONObject json = new JSONObject();
 
@@ -200,12 +208,14 @@ public class Place {
 		return json;
 	}
 
+	@JsonIgnore
 	public static JSONObject toJson(net.sf.sprockets.google.Place place) throws JSONException {
 		Place placeModel = new Place(place);
-		
+
 		return (placeModel.toJson());
 	}
 
+	@JsonIgnore
 	public static JSONArray toJson(List<net.sf.sprockets.google.Place> places) throws JSONException, IOException {
 		JSONArray placesJson = new JSONArray();
 
@@ -218,6 +228,7 @@ public class Place {
 		return placesJson;
 	}
 
+	@JsonIgnore
 	public static String toTimePart(int part) {
 		if (part < 10) {
 			return "0" + part;
@@ -225,22 +236,23 @@ public class Place {
 		return "" + part;
 	}
 
+	@JsonIgnore
 	public double[][] getVector() {
 		double[][] vector = new double[1][PLACE_VECTOR_SIZE];
 		for (int i = 0; i < this.type.getVector().length; i++) {
 			vector[0][i] = this.type.getVector()[0][i];
 		}
-		
+
 		double rating = Double.parseDouble(this.getRating());
-		double ratingVectorRep = rating > 0 ? (rating / 5.0) : 0; 
-		
+		double ratingVectorRep = rating > 0 ? (rating / 5.0) : 0;
+
 		vector[0][RATING_VECTOR_INDEX] = ratingVectorRep;
-		
+
 		double priceLevel = Double.parseDouble(this.getPriceLevel());
 		double priceLevelVectorRep = priceLevel > 0 ? (priceLevel / 5.0) : 0;
-		
+
 		vector[0][PRICE_VECTOR_INDEX] = priceLevel;
-		
+
 		return vector;
 	}
 }

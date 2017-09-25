@@ -93,7 +93,7 @@ public class MongoRepositoryImpl<T extends Identifiable> extends RepositoryImpl<
 		MongoCursor<Document> cursor = _collection.find(Document.parse(query)).iterator();
 		while (cursor.hasNext()) {
 			Document item = cursor.next();
-			results.add(SerializationDeserializationService.deserializeAs(item.toJson(), getGenericType(),
+			results.add(SerializationDeserializationService.tryDeserializeAs(item.toJson(), getGenericType(),
 					DeserializeFormat.MongoBson));
 		}
 
