@@ -78,6 +78,24 @@ public class GoogleService {
     		   .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
     		   .allow("OPTIONS").build();
     }
+    
+//    @GET
+//    @Path("/getRecommendations/{Lat}/{Lng}/{userId}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public static javax.ws.rs.core.Response getRecommendations(@PathParam("Lat") double lat,
+//    														   @PathParam("Lng") double lng, 
+//    														   @PathParam("userId") String userId) throws IOException, JSONException{
+//    	setAPIKey();
+//    	Response<List<Place>> places = Places.nearbySearch(Places.Params.create().latitude(lat).longitude(lng).radius(DEFAULT_RADIUS));
+//    	
+//    	Response<Place> place = Places.details(Places.Params.create().placeId(userId));
+//    	
+//    	String placess = org.ozmi.aroundsee.models.Place.toJson(place.getResult()).toString();
+//    	return javax.ws.rs.core.Response.ok(placess)
+//    		   .header("Access-Control-Allow-Origin", "*")
+//    		   .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+//    		   .allow("OPTIONS").build();
+//    }
 }
 
 

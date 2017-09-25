@@ -196,6 +196,7 @@ public class Place {
 	
 	public static JSONObject toJson(net.sf.sprockets.google.Place place) throws JSONException{
 		Place placeModel = new Place(place);
+		
 		return (placeModel.toJson());
 	}
 	
