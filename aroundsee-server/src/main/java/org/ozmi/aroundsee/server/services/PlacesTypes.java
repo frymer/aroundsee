@@ -137,7 +137,7 @@ public enum PlacesTypes {
 	double urban;
 	double education;
 	double transport;
-	double food;
+	double isFood;
 
 	private PlacesTypes(double nature, double sport, double isStore, double urban, double education, double transport,
 			double food) {
@@ -147,7 +147,7 @@ public enum PlacesTypes {
 		this.urban = urban;
 		this.education = education;
 		this.transport = transport;
-		this.food = food;
+		this.isFood = food;
 	}
 	
 	public double[][] getVector() {
@@ -158,7 +158,7 @@ public enum PlacesTypes {
 		vector[0][3] = urban;
 		vector[0][4] = education;
 		vector[0][5] = transport;
-		vector[0][6] = food;
+		vector[0][6] = isFood;
 		return vector;
 	}
 }
