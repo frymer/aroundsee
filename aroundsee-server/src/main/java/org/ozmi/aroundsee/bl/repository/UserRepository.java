@@ -7,6 +7,7 @@ import org.ozmi.aroundsee.models.Place;
 
 public class UserRepository extends RepositoryObject implements Repository<AroundSeeUser> {
 	private final String FIND_BY_USER_N_PASS = "{ \"$and\": [{\"username\": \"%s\"}, {\"password\": \"%s\"}]}";
+	private final String FIND_BY_USER = "{ \"username\": \"%s\"}";
 	public UserRepository(RepositoryImpl<AroundSeeUser> implementation) {
 		super(implementation);
 	}
@@ -38,6 +39,15 @@ public class UserRepository extends RepositoryObject implements Repository<Aroun
 
 	public AroundSeeUser getUserByUsernameAndPass(String user, String pass) throws Throwable {
 		List<AroundSeeUser> lRes = this.query(String.format(FIND_BY_USER_N_PASS, user, pass));
+		if ((lRes != null) && (!lRes.isEmpty())) {
+			return lRes.get(0);
+		} else {
+			return null;
+		}
+	}
+	
+	public AroundSeeUser getUserByUsername(String user) throws Throwable {
+		List<AroundSeeUser> lRes = this.query(String.format(FIND_BY_USER, user));
 		if ((lRes != null) && (!lRes.isEmpty())) {
 			return lRes.get(0);
 		} else {

@@ -104,6 +104,12 @@ public class LoginService {
 		try {
 			JSONObject jsonRequest = new JSONObject(request);
 
+			String username = jsonRequest.get("username").toString();
+			AroundSeeUser arUser = _aroundseeUserRepository.getUserByUsername(username);
+			if (arUser != null) {
+				return Response.status(Status.BAD_REQUEST).entity("Username already exists").header("Access-Control-Allow-Origin", "*")
+						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
+			}
 			AroundSeeUser user = new AroundSeeUser();
 			user.setLastName(jsonRequest.get("lastName").toString());
 			user.setFirstName(jsonRequest.get("firstName").toString());
