@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.bson.types.ObjectId;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,6 +105,7 @@ public class LoginService {
 			user.setFirstName(jsonRequest.get("firstName").toString());
 			user.setUsername(jsonRequest.get("username").toString());
 			user.setPassword(jsonRequest.get("password").toString());
+			user.set_id(new ObjectId());
 
 			_aroundseeUserRepository.create(user);
 
