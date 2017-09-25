@@ -95,7 +95,7 @@ public class LoginService {
 			boolean isRegisterSuccessfully= true;
 			if (isRegisterSuccessfully){
 				return Response.ok().header("Access-Control-Allow-Origin", "*")
-						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS")..build();
+						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 			}else{
 				return Response.status(Status.BAD_REQUEST).entity("register don't end successfully").build();
 			}
