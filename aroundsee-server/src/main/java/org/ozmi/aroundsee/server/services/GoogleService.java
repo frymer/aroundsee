@@ -176,6 +176,8 @@ public class GoogleService {
 		setAPIKey();
 		Response<Place> placeResponse = Places.details(Places.Params.create().placeId(placeId));
 		_aroundseeUserRepository.addToUserLikedPlaces(userId, new org.ozmi.aroundsee.models.Place(placeResponse.getResult()));
-		return null;
+		return javax.ws.rs.core.Response.ok().header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
+
 	}
 }
