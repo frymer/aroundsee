@@ -2,8 +2,8 @@ package org.ozmi.aroundsee.bl.repository;
 
 import java.util.List;
 
-import org.bson.Document;
 import org.ozmi.aroundsee.models.AroundSeeUser;
+import org.ozmi.aroundsee.models.Place;
 
 public class UserRepository extends RepositoryObject implements Repository<AroundSeeUser> {
 	private final String FIND_BY_USER_N_PASS = "{ \"$and\": [{\"username\": \"%s\"}, {\"password\": \"%s\"}]";
@@ -48,5 +48,11 @@ public class UserRepository extends RepositoryObject implements Repository<Aroun
 		}
 		
 		return false;
+	}
+	
+	public void addToUserLikedPlaces(Object id, Place newPlace) throws Throwable {
+		AroundSeeUser p = this.read(id);
+		p.getLikedPlaces().add(newPlace);
+		this.update(p);
 	}
 }
