@@ -63,8 +63,8 @@ public class LoginService {
 
 	@POST
 	@Path("/login")
-	// @Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+	 @Produces(MediaType.APPLICATION_JSON)
+//	@Consumes(MediaType.APPLICATION_JSON)
 	// {"username":"orsa","password":"123"}
 	public Response login(String request) throws IOException {
 
