@@ -1,12 +1,15 @@
 package org.ozmi.aroundsee.server.services;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -19,6 +22,11 @@ import org.json.JSONObject;
 import org.ozmi.aroundsee.bl.RepositoryImplHanlder;
 import org.ozmi.aroundsee.bl.repository.UserRepository;
 import org.ozmi.aroundsee.models.AroundSeeUser;
+import org.ozmi.aroundsee.models.serialization.SerializationDeserializationService;
+import org.ozmi.aroundsee.models.serialization.SerializeFormat;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("/authentication")
 public class LoginService {
@@ -41,7 +49,16 @@ public class LoginService {
 				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 
 	}
+	
+	@GET
+	public Response getAllUsers() throws Throwable{
+		List<AroundSeeUser> users = _aroundseeUserRepository.all();
+		JsonNode result = new ObjectMapper().readTree(users.toString());
+		
+		return Response.status(Status.OK).entity(result).build();
 
+	}
+	
 	@POST
 	@Path("/login")
 	// @Produces(MediaType.APPLICATION_JSON)
@@ -49,13 +66,12 @@ public class LoginService {
 	// {"username":"orsa","password":"123"}
 	public Response login(@Context HttpServletRequest request) throws IOException {
 
-		try {
+		try{
 			JSONObject jsonRequest = new JSONObject(request);
 
 			String user = jsonRequest.get("username").toString();
 			String pass = jsonRequest.get("password").toString();
 
-			// TODO : connect to DB : check authenticate with user&password
 			boolean isAllowedUser = _aroundseeUserRepository.doesUserExist(user, pass);
 
 			if (isAllowedUser) {
@@ -131,6 +147,14 @@ public class LoginService {
 		} catch (Throwable e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Could not remove user").build();
 		}
+	}
+	
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public javax.ws.rs.core.Response getUserById(@PathParam("id") String id) throws Throwable {
+		AroundSeeUser user = _aroundseeUserRepository.read(id);
+		return Response.status(Status.OK).entity(SerializationDeserializationService.serializeTo(user, SerializeFormat.Json)).build();
 	}
 
 }
