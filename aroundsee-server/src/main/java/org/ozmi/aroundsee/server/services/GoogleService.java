@@ -77,7 +77,8 @@ public class GoogleService {
 				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 	}
 
-	private static List<org.ozmi.aroundsee.models.Place> sortPlaces(Object userId, List<Place> results) throws Throwable {
+	private static List<org.ozmi.aroundsee.models.Place> sortPlaces(Object userId, List<Place> results)
+			throws Throwable {
 		Matrix userVector = calcUserVector(userId);
 		Map<org.ozmi.aroundsee.models.Place, Matrix> placesWithVectors = calcPlacesVectors(results);
 		Map<org.ozmi.aroundsee.models.Place, Double> placesWithScores = new HashMap<org.ozmi.aroundsee.models.Place, Double>();
@@ -115,9 +116,28 @@ public class GoogleService {
 
 	private static Matrix calcUserVector(Object id) throws Throwable {
 		AroundSeeUser user = _aroundseeUserRepository.read(id);
-		double[][] asArray = new double[1][USER_VECTOR_LENGTH];
 
-		return null;
+		double[][] userLikedPlaceMatrix = new double[1][org.ozmi.aroundsee.models.Place.PLACE_VECTOR_SIZE];
+		for (int j = 0; j < org.ozmi.aroundsee.models.Place.PLACE_VECTOR_SIZE; j++) {
+			userLikedPlaceMatrix[0][j] = 0;
+		}
+
+		if (!user.getLikedPlaces().isEmpty()) {
+
+			for (int i = 0; i < user.getLikedPlaces().size(); i++) {
+				double[][] placeVector = user.getLikedPlaces().get(i).getVector();
+				for (int j = 0; j < placeVector.length; j++) {
+					userLikedPlaceMatrix[0][j] += placeVector[0][j];
+				}
+			}
+
+			for (int j = 0; j < org.ozmi.aroundsee.models.Place.PLACE_VECTOR_SIZE; j++) {
+				userLikedPlaceMatrix[0][j] = ((double) userLikedPlaceMatrix[0][j])
+						/ ((double) user.getLikedPlaces().size());
+			}
+		}
+
+		return new Matrix(userLikedPlaceMatrix);
 	}
 
 	private static Map<org.ozmi.aroundsee.models.Place, Matrix> calcPlacesVectors(List<Place> results) {
@@ -131,29 +151,7 @@ public class GoogleService {
 	}
 
 	private static Matrix extractVectorFromPlace(org.ozmi.aroundsee.models.Place place) {
-	
-//		place
-		List<Double> lst = new ArrayList<Double>();
-		lst.add((double) 1);
-		lst.add((double) 1);
-		lst.add((double) 1);
-		lst.add((double) 1);
-		lst.add((double) 1);
-		lst.add((double) 1);
-		lst.add((double) 1);
-		lst.add((double) 1);
-		lst.add((double) 1);
-		lst.add((double) 1);
-		lst.add((double) 1);
-		double[][] arr = new double[1][lst.size()];
-		for (int i = 0; i < arr.length; i++) {
-			arr[0][i] = lst.get(i).doubleValue(); // java 1.4 style
-			// or:
-			arr[0][i] = lst.get(i); // java 1.5+ style (outboxing)
-		}
-		return new Matrix(arr);
-		// = new double[lst.size()];
-		// double[] arr = (double[])(lst.toArray();
+		return new Matrix(place.getVector());
 	}
 
 	@GET
@@ -168,5 +166,16 @@ public class GoogleService {
 		String places = org.ozmi.aroundsee.models.Place.toJson(place.getResult()).toString();
 		return javax.ws.rs.core.Response.ok(places).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
+	}
+
+	@GET
+	@Path("/rankPlaces/{userId}/{placeId}/{rank}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public static javax.ws.rs.core.Response rankPlaces(@PathParam("userId") String userId,
+			@PathParam("placeId") String placeId, @PathParam("rank") int rank) throws Throwable {
+		setAPIKey();
+		Response<Place> placeResponse = Places.details(Places.Params.create().placeId(placeId));
+		_aroundseeUserRepository.addToUserLikedPlaces(userId, new org.ozmi.aroundsee.models.Place(placeResponse.getResult()));
+		return null;
 	}
 }

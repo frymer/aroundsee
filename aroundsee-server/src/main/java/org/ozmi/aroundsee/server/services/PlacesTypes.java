@@ -130,7 +130,7 @@ public enum PlacesTypes {
 	sublocality_level_1(0, 0, 0, 0, 0, 0, 0),
 	subpremise(0, 0, 0, 0, 0, 0, 0);
 	
-	final int NUM_OF_CATEGORIES = 7;
+	public final int NUM_OF_CATEGORIES = 7;
 	double nature;
 	double sport;
 	double isStore;

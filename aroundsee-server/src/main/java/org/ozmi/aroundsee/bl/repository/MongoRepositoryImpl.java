@@ -57,8 +57,8 @@ public class MongoRepositoryImpl<T extends Identifiable> extends RepositoryImpl<
 	public void update(T object) throws JsonProcessingException {
 		Document documentToUpdate = Document
 				.parse(SerializationDeserializationService.serializeTo(object, SerializeFormat.MongoBson));
-		Document searchQuery = new Document().append("_id", documentToUpdate.getObjectId("_id"));
-		_collection.updateOne(searchQuery, documentToUpdate);
+		BasicDBObject idFilter = new BasicDBObject("_id", documentToUpdate.getObjectId("_id"));
+		_collection.replaceOne(idFilter, documentToUpdate);
 	}
 
 	@Override
@@ -83,8 +83,8 @@ public class MongoRepositoryImpl<T extends Identifiable> extends RepositoryImpl<
 
 	@Override
 	public void delete(Object id) {
-		Document searchQuery = new Document().append("_id", id);
-		_collection.deleteOne(searchQuery);
+		BasicDBObject idFilter = new BasicDBObject("_id", new ObjectId((String) id));
+		_collection.deleteOne(idFilter);
 	}
 
 	@Override
