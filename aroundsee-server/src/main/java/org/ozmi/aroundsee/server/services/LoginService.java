@@ -1,12 +1,15 @@
 package org.ozmi.aroundsee.server.services;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -19,6 +22,9 @@ import org.json.JSONObject;
 import org.ozmi.aroundsee.bl.RepositoryImplHanlder;
 import org.ozmi.aroundsee.bl.repository.UserRepository;
 import org.ozmi.aroundsee.models.AroundSeeUser;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("/authentication")
 public class LoginService {
@@ -43,12 +49,21 @@ public class LoginService {
 		
 	}
 	
+	@GET
+	public Response getAllUsers() throws Throwable{
+		List<AroundSeeUser> users = _aroundseeUserRepository.all();
+		JsonNode result = new ObjectMapper().readTree(users.toString());
+		
+		return Response.status(Status.OK).entity(result).build();
+
+	}
+	
 	@POST
 	@Path("/login")
 //	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	 //{"username":"orsa","password":"123"}
-	public Response login(@Context HttpServletRequest request) throws IOException {
+	public Response login(String request) throws IOException {
 		
 		try{
 			JSONObject jsonRequest = new JSONObject(request);
@@ -134,7 +149,17 @@ public class LoginService {
 		}
 	}
 	
-	
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public javax.ws.rs.core.Response getUserById(@PathParam("id") String id) throws IOException, JSONException {
+		
+		// TODO: 
+//		_aroundseeUserRepository.doesUserExist(user, pass)
+//		
+		return null;
+		
+	}
 
 }
 
