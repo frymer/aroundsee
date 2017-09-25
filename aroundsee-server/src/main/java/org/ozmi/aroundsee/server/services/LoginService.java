@@ -56,7 +56,8 @@ public class LoginService {
 		List<AroundSeeUser> users = _aroundseeUserRepository.all();
 		JsonNode result = new ObjectMapper().readTree(users.toString());
 
-		return Response.status(Status.OK).entity(result).build();
+		return Response.status(Status.OK).entity(result).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 
 	}
 
@@ -82,13 +83,16 @@ public class LoginService {
 						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 
 			} else {
-				return Response.status(Status.BAD_REQUEST).entity("not allowed user").build();
+				return Response.status(Status.BAD_REQUEST).entity("not allowed user").header("Access-Control-Allow-Origin", "*")
+						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 			}
 
 		} catch (JSONException ex) {
-			return Response.status(Status.BAD_REQUEST).entity("request body is not in json type").build();
+			return Response.status(Status.BAD_REQUEST).entity("request body is not in json type").header("Access-Control-Allow-Origin", "*")
+					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		} catch (Throwable e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Could not verfiy user").build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Could not verfiy user").header("Access-Control-Allow-Origin", "*")
+					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		}
 	}
 
@@ -115,13 +119,16 @@ public class LoginService {
 				return Response.ok().header("Access-Control-Allow-Origin", "*")
 						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 			} else {
-				return Response.status(Status.BAD_REQUEST).entity("register don't end successfully").build();
+				return Response.status(Status.BAD_REQUEST).entity("register don't end successfully").header("Access-Control-Allow-Origin", "*")
+						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 			}
 
 		} catch (JSONException ex) {
-			return Response.status(Status.BAD_REQUEST).entity("request body is not in json type").build();
+			return Response.status(Status.BAD_REQUEST).entity("request body is not in json type").header("Access-Control-Allow-Origin", "*")
+					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		} catch (Throwable e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Could not save new user").build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Could not save new user").header("Access-Control-Allow-Origin", "*")
+					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 
 		}
 	}
