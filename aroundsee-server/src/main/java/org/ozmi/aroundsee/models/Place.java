@@ -117,6 +117,7 @@ public class Place {
 	}
 
 	public Place(net.sf.sprockets.google.Place place){
+		this.type = Enum.valueOf(PlacesTypes.class, place.getTypes().get(0));
 		this.name = place.getName();
 		
 		this.review = place.getReviews().size() > 0 ? place.getReviews().get(0).getText() : null;

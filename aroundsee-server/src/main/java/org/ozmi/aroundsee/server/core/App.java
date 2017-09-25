@@ -3,8 +3,8 @@ package org.ozmi.aroundsee.server.core;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.ozmi.aroundsee.server.services.LoginService;
 import org.ozmi.aroundsee.server.services.GoogleService;
+import org.ozmi.aroundsee.server.services.LoginService;
 import org.ozmi.aroundsee.server.services.SampleService;
 
 import com.typesafe.config.Config;
@@ -20,7 +20,7 @@ public class App
     	Config config = ConfigFactory.load();
 		ServletContextHandler context = new ServletContextHandler();
 		context.setContextPath("/");
-		context.setAttribute("config", config);
+		context.setAttribute("config", config);		
 
 		Server jettyServer = new Server(config.getInt("server.port"));
 		jettyServer.setHandler(context);

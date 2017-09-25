@@ -6,38 +6,39 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
+import org.ozmi.aroundsee.models.serialization.DeserializeFormat;
+import org.ozmi.aroundsee.models.serialization.SerializationDeserializationService;
+import org.ozmi.aroundsee.models.serialization.SerializeFormat;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 
 public class MongoRepositoryImpl<T extends Identifiable> extends RepositoryImpl<T> {
 	private MongoCollection<Document> _collection;
-	private ObjectMapper _mapper;
 	private Class<T> _type;
-	
+
 	@Override
 	protected Class<T> getGenericType() {
 		return _type;
 	}
-	
+
 	public MongoRepositoryImpl(MongoCollection<Document> collection, Class<T> type) {
 		this._collection = collection;
-		this._mapper = new ObjectMapper();
 		this._type = type;
 	}
 
 	private T pasrseDocumentToT(Document doc) throws JsonParseException, JsonMappingException, IOException {
-		Object id = doc.get("_id");
-		doc.remove("_id");
-		T result = _mapper.readValue(doc.toJson(), getGenericType());
-		result.setId(id);
+		T result = SerializationDeserializationService.deserializeAs(doc.toJson(), getGenericType(),
+				DeserializeFormat.MongoBson);
 		return result;
 	}
-	
+
 	@Override
 	public List<T> all() throws JsonParseException, JsonMappingException, IOException {
 		List<T> results = new ArrayList<T>();
@@ -54,22 +55,30 @@ public class MongoRepositoryImpl<T extends Identifiable> extends RepositoryImpl<
 
 	@Override
 	public void update(T object) throws JsonProcessingException {
-		Document documentToUpdate = Document.parse(_mapper.writeValueAsString(object));
-		Document searchQuery = new Document().append("_id", object.getId());
+		Document documentToUpdate = Document
+				.parse(SerializationDeserializationService.serializeTo(object, SerializeFormat.MongoBson));
+		Document searchQuery = new Document().append("_id", documentToUpdate.getObjectId("_id"));
 		_collection.updateOne(searchQuery, documentToUpdate);
 	}
 
 	@Override
 	public void create(T object) throws JsonProcessingException {
-		Document documentToInsert = Document.parse(_mapper.writeValueAsString(object));
+		Document documentToInsert = Document
+				.parse(SerializationDeserializationService.serializeTo(object, SerializeFormat.MongoBson));
 
 		_collection.insertOne(documentToInsert);
 	}
 
 	@Override
 	public T read(Object id) throws JsonParseException, JsonMappingException, IOException {
-		Document filter = new Document().append("_id", id);
-		return (T) _mapper.readValue(_collection.find(filter).first().toString(), getGenericType());
+		BasicDBObject idFilter = new BasicDBObject("_id", new ObjectId((String) id));
+		Document res = _collection.find(idFilter).first();
+		if (res == null) {
+			return null;
+		} else {
+			return (T) SerializationDeserializationService.deserializeAs(res.toJson(),
+					getGenericType(), DeserializeFormat.MongoBson);
+		}
 	}
 
 	@Override
@@ -84,9 +93,10 @@ public class MongoRepositoryImpl<T extends Identifiable> extends RepositoryImpl<
 		MongoCursor<Document> cursor = _collection.find(Document.parse(query)).iterator();
 		while (cursor.hasNext()) {
 			Document item = cursor.next();
-			results.add(_mapper.readValue(item.toJson(), getGenericType()));
+			results.add(SerializationDeserializationService.deserializeAs(item.toJson(), getGenericType(),
+					DeserializeFormat.MongoBson));
 		}
-		
+
 		return results;
 	}
 }
